@@ -3,6 +3,7 @@ import avatar1 from "../assets/avatar1.png";
 import avatar2 from "..//assets/avatar2.png";
 import avatar3 from "..//assets/avatar3.png";
 import avatar4 from "../assets/avatar4.png";
+import bgQuote from '../assets/quotation.svg';
 
 const cardContents = [
   {
@@ -66,7 +67,7 @@ const TestimonialCard = ({ title, review, avatar, name, place }) => {
 const Testimonials = () => {
   return (
     <section className="testimonials">
-      <h2 className='testimonial-h2'>Testimonials</h2>
+      <h2 className='testimonial-h2'><img src={bgQuote} alt='quotation' id='bg-quote'/>Testimonials</h2>
       <div className="card-container">
         {cardContents.map((card) => (
           <TestimonialCard key={card.id} {...card} />
