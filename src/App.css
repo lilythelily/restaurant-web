@@ -30,12 +30,13 @@ body {
   --gray4: #919191;
   --gray5: #bcbcbc;
   --gray6: #d4d4d4;
+  --lightest-gray: #f1f1f1;
   --white: #fff;
   --salmon: #ee9972;
   --pale-pink: #fbdabb;
   --dark-coral: #df591b;
   --bg: #f7f7f7;
-  --margin-left: 188px;
+  --margin-left: 80px;
 }
 
 /* ==== Header ==== */
@@ -73,7 +74,7 @@ body {
 }
 
 .login-btn:hover {
-  background-color: #e0e0e0;
+  background-color: var(--lightest-gray);
   border: 2px solid var(--gray5);
   transition: all 0.4s ease-out;
 }
@@ -125,7 +126,7 @@ h1 {
   font-size: 80px;
   font-weight: 500;
   color: var(--white);
-  margin-left: var(--margin-left);
+  margin-left: 188px;
   padding-top: 40px;
   letter-spacing: 1.2px;
 }
@@ -135,7 +136,7 @@ h1 {
   font-size: 40px;
   font-weight: 400;
   color: var(--white);
-  margin-left: var(--margin-left);
+  margin-left: 188px;
   margin-top: 8px;
   letter-spacing: 1.4px;
 }
@@ -174,11 +175,148 @@ h1 {
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
     0px 2px 6px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  margin-left: var(--margin-left);
+  margin-left: 188px;
   margin-top: 32px;
 }
 
 .reserve-btn:hover {
   background-color: var(--yellow2);
+  transition: all 0.3s ease-out;
+}
+
+/* ==== featured menu ==== */
+
+.featured.menu {
+  margin-top: 100px;
+}
+
+.cards-slider {
+  display: flex;
+  gap: 40px;
+  margin: 32px 0 40px var(--margin-left);
+  overflow-x: scroll;
+  padding: 8px 0;
+}
+
+.menu-image {
+  border-radius: 16px 16px 0 0;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+h2 {
+  font-family: "Markazi Text", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--gray1);
+  margin-left: var(--margin-left);
+  margin-top: 56px;
+  letter-spacing: 1.4px;
+}
+
+.title {
+  font-size: 18px;
+  color: var(--gray1);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray4);
+  margin-bottom: 24px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gray1);
+}
+
+.order-btn {
+  font-family: "Karla", sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gray2);
+  border-radius: 100px;
+  border-top: 1px solid var(--gray5);
+  border-left: 1px solid var(--gray5);
+  border-bottom: 1px solid var(--gray5);
+  border-right: none;
+  padding: 8px 0px 8px 16px;
+  background-color: transparent;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 42px;
+  cursor: pointer;
+}
+
+#check {
+  border-radius: 100%;
+  border: 1px solid var(--gray6);
+  width: 42px;
+}
+
+#check:hover {
+  background-color: var(--lightest-gray);
+}
+
+#check:active {
+  background-color: var(--gray1);
+  color: var(--white);
+}
+
+.price-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 16px 40px 16px;
+  background-color: var(--white);
+  border-radius: 0px 0px 16px 16px;
+}
+
+.card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  min-width: 420px;
+}
+
+.delivery-btn {
+  background-color: var(--pale-pink);
+  border: none;
+  border-radius: 16px;
+  color: var(--dark-coral);
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-family: Karla;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
+  display: flex;
+  padding: 24px 20px 24px 40px;
+  gap: 24px;
+  align-items: center;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  margin: 0 auto 100px auto;
+}
+
+.delivery-btn:hover {
+  background-color: #fdefe2;
   transition: all 0.3s ease-out;
 }
