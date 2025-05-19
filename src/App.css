@@ -44,8 +44,8 @@ body {
 .header-ul {
   list-style: none;
   font-family: "Karla", sans-serif;
-  font-weight: 800;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
   color: var(--gray3);
   text-transform: uppercase;
   display: flex;
@@ -64,11 +64,12 @@ body {
   border-radius: 8px;
   border: 2px solid var(--gray3);
   font-family: "Karla", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 16px;
   text-transform: uppercase;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
   cursor: pointer;
 }
@@ -194,7 +195,7 @@ h1 {
   display: flex;
   gap: 40px;
   margin: 32px 0 40px var(--margin-left);
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 8px 0;
 }
 
@@ -207,7 +208,7 @@ h1 {
 
 h2 {
   font-family: "Markazi Text", sans-serif;
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 400;
   color: var(--gray1);
   margin-left: var(--margin-left);
@@ -319,4 +320,283 @@ h2 {
 .delivery-btn:hover {
   background-color: #fdefe2;
   transition: all 0.3s ease-out;
+}
+
+/* === Tesimonials === */
+
+.testimonial-h2 {
+  font-family: "Markazi Text", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 1.4px;
+}
+
+h3 {
+  font-family: "Markazi Text", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--gray2);
+}
+
+.testimonial-card {
+  width: 273px;
+  height: 318px;
+  background-color: var(--white);
+  border-radius: 16px;
+  border-right: 1px solid var(--gray5);
+  border-bottom: 2px solid var(--gray5);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stars {
+  width: 50%;
+}
+
+.review {
+  font-size: 16px;
+  color: var(--gray3);
+  font-weight: 400;
+  padding-top: 16px;
+  line-height: 24px;
+}
+
+.review-text {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--lightest-gray);
+}
+
+.name {
+  font-size: 16px;
+  color: var(--gray2);
+}
+
+.place {
+  font-size: 12px;
+  color: var(--gray4);
+}
+
+.name-place {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.avatar-name {
+  display: flex;
+  margin-top: 24px;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-container {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  margin-top: 40px;
+}
+
+.testimonials {
+  width: 100vw;
+  height: 545px;
+  border-radius: 0px 200px 0px 0px;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    ),
+    url("./assets/restaurant.jpg") lightgray 50% / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==== About ==== */
+
+.about-h2,
+.subscribe-h2 {
+  margin-left: 0;
+}
+
+.tagline {
+  font-family: "Markazi Text", sans-serif;
+  font-size: 32px;
+  color: var(--gray3);
+  font-weight: 400;
+  letter-spacing: 1.4px;
+}
+
+article {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gray3);
+  line-height: 28px;
+  letter-spacing: 0.8px;
+  margin: 32px 0 24px 0;
+}
+
+.bottom-img {
+  width: 100%;
+  height: 277px;
+  border-radius: 4px 4px 4px 312px;
+  background-image: url("./assets/chef.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.right-img {
+  width: 70%;
+  max-width: 630px;
+  height: 671px;
+  border-radius: 315px 315px 4px 4px;
+  background: url("./assets/two-chefs.jpg") no-repeat;
+  background-size: cover;
+  background-position: 80%;
+}
+
+.about {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: end;
+  margin: 100px 80px;
+  background-image: url('./assets/logo.jpg');
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: top center;
+}
+
+/* ==== Subscribe ==== */
+
+.subscribe-email{
+  background-color: var(--white);
+  border-radius: 16px 0 0 16px;
+
+width: 383px;
+height: 72px;
+font-family: 'Karla', sans-serif;
+color: var(--gray5);
+font-size: 16px;
+font-weight: 700;
+display: flex;
+align-items: center;
+padding-left: 16px;
+}
+
+.send{
+  background-color: var(--green1);
+  color: var(--white);
+  padding: 8px 24px;
+  border-radius: 0 16px 16px 0;
+  height: 72px;
+  display: inline-flex;
+justify-content: center;
+align-items: center;
+gap: 8px;
+text-transform: uppercase;
+letter-spacing: 1.2px;
+}
+
+.send:hover{
+  background-color: var(--green3);
+  transition: all 0.3s ease-out;
+}
+
+.subscribe-btn{
+  border: none;
+  background-color : transparent;
+box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+display: flex;
+border-radius: 16px;
+margin: 32px auto 100px auto;
+cursor:pointer;
+}
+
+.subscribe{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+}
+
+/* ==== Footer ==== */
+
+footer{
+  background-color: var(--gray1);
+  color: var(--bg);
+padding: 24px 0;
+}
+
+#white-logo{
+  width: 120px;
+  mix-blend-mode:luminosity;
+  display: block;
+  margin: 24px auto 32px auto;
+  cursor:pointer;
+}
+
+.footer-ul{
+  font-size: 16px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.footer-ul li{
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.footer-ul li:hover{
+  color: var(--yellow1);
+}
+
+.contact{
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.contact-text{
+  font-size: 15px;
+  letter-spacing: 1.1px;
+}
+
+.icon-contact{
+  display: flex;
+  gap: 10px;
+  align-items: start;
+}
+
+
+.contact-section{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+}
+
+.socials{
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  cursor: pointer;
+}
+
+.footer-contents{
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: start;
 }
