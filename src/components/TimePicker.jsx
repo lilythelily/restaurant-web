@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Booking from "./Booking";
 
 const TimePicker = () => {
-  const timeOptions = [
+  const availableTimes = [
     {
       id: 1,
       option: "17:00",
@@ -28,7 +29,6 @@ const TimePicker = () => {
     },
   ];
 
-  const [selectedTime, setSelectedTime] = useState(timeOptions[0].option);
   const handleTime = (e) => {
     setSelectedTime(e.target.value);
   };
@@ -36,7 +36,7 @@ const TimePicker = () => {
   return (
     <>
       <select id="booking-time" value={selectedTime} onChange={handleTime}>
-        {timeOptions.map((time) => (
+        {availableTimes.map((time) => (
           <option key={time.id} value={time.option}>
             {time.option}
           </option>

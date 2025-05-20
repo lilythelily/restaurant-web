@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useReducer } from "react";
 import { Link } from "react-router-dom";
-import TimePicker from "./TimePicker";
 import Dietary from "./Dietary";
 import Occasion from "./Occasion";
 import homeIcon from "../assets/icons/home-04.svg";
@@ -48,24 +47,65 @@ const Select = ({ image, title, asterisk }) => {
   );
 };
 
-const DatePicker = ({ month, date, day }) => {
+const DatePicker = () => {
   return (
-    <div className="date-wrapper">
-      <p className="month">{month}</p>
-      <p className="date">{date}</p>
-      <p className="day">{day}</p>
-    </div>
+      <input type='date' id='date-picker'></input>
+  )
+}
+
+const TimePicker = () => {
+  const timeOptions = [
+    {
+      id: 1,
+      option: "17:00",
+    },
+    {
+      id: 2,
+      option: "18:00",
+    },
+    {
+      id: 3,
+      option: "19:00",
+    },
+    {
+      id: 4,
+      option: "20:00",
+    },
+    {
+      id: 5,
+      option: "21:00",
+    },
+    {
+      id: 6,
+      option: "22:00",
+    },
+  ];
+
+  const handleTime = (e) => {
+    setSelectedTime(e.target.value);
+  };
+
+  return (
+    <>
+      <select id="booking-time" value={timeOptions[5].option} onChange={handleTime}>
+        {timeOptions.map((time) => (
+          <option key={time.id} value={time.option}>
+            {time.option}
+          </option>
+        ))}
+      </select>
+    </>
   );
 };
 
-const DateContainer = () => {
-  return (
-    <div className="date-container">
-      <DatePicker month="May" date="14" day="Wed" />
-      <DatePicker month="May" date="15" day="Thu" />
-    </div>
-  );
-};
+const updateTimes = () => {
+  setAvailableTime('');
+}
+
+const initializeTimes = () => {
+  const [availableTimes, setAvailableTime] = useState("");
+}
+
 
 const Counter = () => {
   const [guest, setGuest] = useState(0);
@@ -105,18 +145,24 @@ const LargeBtn = ({ text, icon }) => {
 };
 
 const Booking = () => {
+  const [selectedTime, setSelectedTime] = useState('17:00');
   return (
     <>
       <BreadCrumb />
       <ProgressBar />
       <div className="booking-container">
         <div className="booking-main">
-          <Select image={calendar} title="Select a Date" asterisk="*" />
-          <DateContainer />
+          <div className="item">
+            <Select image={calendar} title="Select a Date" asterisk="*" />
+            <DatePicker />
+          </div>
 
           <div className="item">
             <Select image={clock} title="Select Time" asterisk="*" />
-            <TimePicker />
+            <TimePicker
+              selectedTime={selectedTime}
+              setSelectedTime={setSelectedTime}
+            />
           </div>
 
           <div className="item">
