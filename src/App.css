@@ -628,25 +628,28 @@ footer {
 }
 
 @media (max-width: 1000px) {
-  .header-ul {
-    display: none;
-  }
   #hamburger {
     display: block;
   }
+  .cart {
+    display: none;
+  }
+  .login-btn {
+    display: none;
+  }
 
   .about {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  justify-content: center;
-  align-items: center;
-  margin: 100px auto;
-  background-image: url("./assets/logo.jpg");
-  background-repeat: no-repeat;
-  background-size: 40%;
-  background-position: top center;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto;
+    background-image: url("./assets/logo.jpg");
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: top center;
+  }
   .left {
     width: 80vw;
   }
@@ -657,18 +660,12 @@ footer {
 }
 
 @media (max-width: 640px) {
-
-  .hero-section{
+  .hero-section {
     height: 500px;
-      outline: 4px solid var(--yellow1);
-  outline-offset: 8px;
+    outline: 4px solid var(--yellow1);
+    outline-offset: 8px;
   }
-  .cart {
-    display: none;
-  }
-  .login-btn {
-    display: none;
-  }
+
   h1 {
     font-size: 48px;
     margin-left: 80px;
@@ -678,15 +675,14 @@ footer {
     font-size: 24px;
     margin-left: 80px;
   }
-.reserve-btn {
+  .reserve-btn {
+    margin-left: 80px;
+    margin-top: 50px;
+  }
 
-  margin-left: 80px;
-  margin-top: 50px;
-}
-
-.card{
-  min-width: 100%;
-}
+  .card {
+    min-width: 100%;
+  }
 
   .card-container {
     width: 100vw;
@@ -694,25 +690,25 @@ footer {
   }
 
   .cards-slider {
-  display: flex;
-  gap: 40px;
-  margin: 32px 0px 32px 8px;
-  overflow-x: auto;
-  padding: 8px 0;
-}
+    display: flex;
+    gap: 40px;
+    margin: 32px 0px 32px 8px;
+    overflow-x: auto;
+    padding: 8px 0;
+  }
 
-.testimonial-h2 {
-  font-family: "Markazi Text", sans-serif;
-  font-size: 48px;
-  font-weight: 400;
-  color: var(--white);
-  letter-spacing: 1.4px;
-  margin: 0 auto;
-}
+  .testimonial-h2 {
+    font-family: "Markazi Text", sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 1.4px;
+    margin: 0 auto;
+  }
 
-#bg-quote {
-  display: none;
-}
+  #bg-quote {
+    display: none;
+  }
 
   .left {
     width: 90vw;
@@ -721,28 +717,28 @@ footer {
   .right-img {
     width: 90vw;
   }
-  .about{
+  .about {
     margin-bottom: 40px;
   }
 
   .subscribe-email {
-  background-color: var(--white);
-  border-radius: 16px 0 0 16px;
-  width: 230px;
-  height: 72px;
-  font-family: "Karla", sans-serif;
-  color: var(--gray5);
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  padding-left: 16px;
-}
+    background-color: var(--white);
+    border-radius: 16px 0 0 16px;
+    width: 230px;
+    height: 72px;
+    font-family: "Karla", sans-serif;
+    color: var(--gray5);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+  }
 
-.footer-ul{
-  display: none;
-}
-.contact-section{
-  display: none;
-}
+  .footer-ul {
+    display: none;
+  }
+  .contact-section {
+    display: none;
+  }
 }

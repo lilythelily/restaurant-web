@@ -1,18 +1,10 @@
-import Hero from "./Hero";
-import FeaturedMenu from "./FeaturedMenu";
-import Testimonials from "./Testimonials";
-import About from "./About";
-import Subscribe from "./Subscribe";
+import Dietary from '../components/Dietary';
 
 const Form = () => {
   return (
-    <main>
-      <Hero />
-      <FeaturedMenu />
-      <Testimonials />
-      <About />
-      <Subscribe />
-    </main>
+    <>
+     <Dietary/>
+</>
   );
 };
 
