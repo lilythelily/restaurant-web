@@ -1,19 +1,29 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import cart from "../assets/icons/cart.svg";
 import login from "../assets/icons/Log in.svg";
+import hamburger from "../assets/icons/hamburger.svg";
 
 const Header = () => {
   return (
     <>
       <header>
-        <img src={logo} alt="logo" width="148" height="40"/>
+        <img src={logo} alt="logo" width="148" height="40" />
         <nav>
           <ul className="header-ul">
-            <li><a href='#'>Home</a></li>
-            <li>About</li>
-            <li>Menu</li>
-            <li>Reservation</li>
-            <li>Order Online</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/">About</Link>
+            </li>
+            <li>
+              <Link to="/">Menu</Link>
+            </li>
+            <li>
+              <Link to="/booking">Reservation</Link>
+            </li>
+            <li></li>
           </ul>
         </nav>
         <div className="cart-login">
@@ -21,6 +31,7 @@ const Header = () => {
           <button className="login-btn">
             <img src={login} alt="login"></img>Login
           </button>
+          <img src={hamburger} alt="menu" id="hamburger" />
         </div>
       </header>
     </>

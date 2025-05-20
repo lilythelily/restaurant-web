@@ -8,7 +8,6 @@ const Subscribe = () => {
       <button className="subscribe-btn">
         <div className="subscribe-email">Your Email Address</div>
         <div className="send">
-          Subscribe
           <img src={send} />
         </div>
       </button>
