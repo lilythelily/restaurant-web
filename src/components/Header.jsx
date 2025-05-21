@@ -3,12 +3,16 @@ import logo from "../assets/logo.jpg";
 import cart from "../assets/icons/cart.svg";
 import login from "../assets/icons/Log in.svg";
 import hamburger from "../assets/icons/hamburger.svg";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Header = () => {
   return (
     <>
       <header>
-        <img src={logo} alt="logo" width="148" height="40" />
+        <Link to="/">
+          <img src={logo} alt="logo" width="148" height="40" />
+        </Link>
+
         <nav>
           <ul className="header-ul">
             <li>
@@ -34,6 +38,7 @@ const Header = () => {
           <img src={hamburger} alt="menu" id="hamburger" />
         </div>
       </header>
+
     </>
   );
 };

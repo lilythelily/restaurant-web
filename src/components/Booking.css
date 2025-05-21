@@ -93,8 +93,6 @@ main {
   gap: 16px;
 }
 
-
-
 /* .date-wrapper {
   padding: 16px 24px;
   border: 2px solid var(--gray3);
@@ -117,7 +115,7 @@ main {
   margin: 24px 0;
 } */
 
-#date-picker{
+#date-picker {
   appearance: none;
   background-color: var(--bg);
   width: 314px;
@@ -130,7 +128,7 @@ main {
   cursor: pointer;
   margin: 8px 0 40px 0;
   border: none;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-size: 20px;
   color: var(--gray2);
 }
@@ -254,7 +252,7 @@ select {
   background-image: url("../assets/icons/chevron-down.svg");
   background-repeat: no-repeat;
   background-position: center right 10%;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   font-size: 20px;
   color: var(--gray2);
 }
@@ -317,4 +315,208 @@ select {
   justify-content: space-between;
   align-items: start;
   margin: 24px 0;
+}
+
+/* ==== contact info ==== */
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  padding: 32px 0;
+  width: 100vw;
+}
+
+.contact-field {
+  width: 450px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid var(--gray6);
+  background: var(--white);
+  color: var(--gray2);
+  padding-left: 24px;
+  font-family: "Karla", sans-serif;
+  font-size: 20px;
+  text-align: left;
+}
+
+::placeholder {
+  color: var(--gray5);
+  font-family: "Karla", sans-serif;
+  font-size: 20px;
+  margin-left: 24px;
+}
+
+.label-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+small {
+  color: var(--dark-coral);
+  margin-bottom: 32px;
+  opacity: 0;
+}
+
+textarea {
+  width: 450px;
+  height: 200px;
+  border-radius: 8px;
+  border: 1px solid var(--gray6);
+  background: var(--white);
+  color: var(--gray2);
+  padding: 24px 24px;
+  font-family: "Karla", sans-serif;
+  font-size: 20px;
+  text-align: left;
+}
+
+.cotact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 100px;
+}
+
+/* ===== Confirmation ===== */
+
+.confirm-item{
+  font-size: 16px;
+  color: var(--gray3);
+  font-weight: 400;
+}
+
+.response{
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray1);
+}
+
+.img-title{
+  width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.confirmation-wrapper{
+  display: flex;
+  width: 50vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 32px 0 16px 0;
+  border-bottom: 1px solid var(--lightest-gray);
+  gap: 10%;
+}
+
+.large-btn2{
+  display: flex;
+  width: 622px;
+  padding: 32px 20px 32px 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  border-radius: 16px;
+  background: none;
+  border: 1.5px solid var(--green1);
+  font-family: "Karla", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  color: var(--green1);
+  cursor: pointer;
+  text-align: center;
+  margin: 80px auto 100px auto;
+}
+
+/* ==== thanks modal ==== */
+
+.thanks-h2{
+  margin: -24px 0 16px 0;
+}
+
+.message {
+  color: var(--green3);
+  font-size: 18px;
+  letter-spacing: 1.4px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.popup{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 16px;
+  width: 500px;
+  height: 500px;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+  background-image: url('../assets/icons/x.svg');
+  background-repeat: no-repeat;
+  background-position: top 5% right 5%;
+}
+
+.modal{
+  position: absolute;
+  z-index: 0;
+  transform: translate(-50% -50%);
+  top: 50%;
+ left: 50%;
+ margin-left: -20%;
+ display: none;
+}
+
+/* ---responsive---- */
+
+@media (max-width: 1200px) {
+  .header-ul {
+    font-size: 13px;
+    gap: 24px;
+  }
+  .card-container {
+    width: 90vw;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 1000px) {
+  #hamburger {
+    display: block;
+  }
+  .cart {
+    display: none;
+  }
+  .login-btn {
+    display: none;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .confirmation-wrapper{
+    width: 90vw;
+  }
+  .progress{
+    margin-top: 16px;
+  }
+
+  .bread{
+    display:none;
+  }
+  .large-btn,
+  .large-btn2{
+    width: 90vw;
+  }
+
+  .footer-ul {
+    display: none;
+  }
+
+
 }

@@ -1,34 +1,14 @@
 import { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Dietary from "./Dietary";
-import Occasion from "./Occasion";
+
 import homeIcon from "../assets/icons/home-04.svg";
 import chevron from "../assets/icons/chevron-right.svg";
-import progress1 from "../assets/progress1.png";
-import calendar from "../assets/icons/calendar-02.svg";
-import clock from "../assets/icons/clock-01.svg";
-import users from "../assets/icons/users-profiles-03.svg";
-import fork from "../assets/icons/restaurant.svg";
-import celebration from "../assets/icons/celebration.svg";
+import progress2 from "../assets/progress2.png";
+import user from "../assets/icons/user-profile-02.svg";
+import email from "../assets/icons/email-orange.svg";
+import creditcard from "../assets/icons/card-02.svg";
+import feather from "../assets/icons/feather-02.svg";
 import rightArrow from "../assets/icons/arrow-right.svg";
-
-const fetchAPI = function (date) {
-  let result = [];
-  let seededRandom = function (seed) {
-    var m = 2 ** 35 - 31;
-    var a = 185852;
-    var s = seed % m;
-    return function () {
-      return (s = (s * a) % m) / m;
-    };
-  };
-  let random = seededRandom(date.getDate());
-  for (let i = 17; i <= 23; i++) {
-    if (random() < 0.5) result.push(i + ":00");
-    if (random() < 0.5) result.push(i + ":30");
-  }
-  return result;
-};
 
 const BreadCrumb = () => {
   return (
@@ -38,7 +18,11 @@ const BreadCrumb = () => {
       </Link>
 
       <img src={chevron} alt="chevron" />
-      <p className="bread-text">Reserve a table</p>
+      <Link to="/booking">
+        <p className="bread-text">Reserve a table</p>
+      </Link>
+      <img src={chevron} alt="chevron" />
+      <p className="bread-text">Your Information</p>
     </div>
   );
 };
@@ -46,8 +30,8 @@ const BreadCrumb = () => {
 const ProgressBar = () => {
   return (
     <div className="progress">
-      <img src={progress1} />
-      <h2 className="clear-h2">Reserve a Table</h2>
+      <img src={progress2} />
+      <h2 className="clear-h2">Contact Information</h2>
     </div>
   );
 };
@@ -64,154 +48,80 @@ const Select = ({ image, title, asterisk }) => {
   );
 };
 
-const DatePicker = () => {
-  const [date, setDate] = useState("");
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-  return (
-    <input
-      type="date"
-      id="date-picker"
-      value={date}
-      onChange={handleDateChange}
-    ></input>
-  );
-};
-
-const TimeSelector = ({ value, onChange, availableTimes }) => {
-  return (
-    <select id="booking-time" value={value} onChange={onChange}>
-      {availableTimes.map((time, index) => (
-        <option key={index} value={time}>
-          {time}
-        </option>
-      ))}
-    </select>
-  );
-};
-
-const Counter = () => {
-  const [guest, setGuest] = useState(0);
-
-  const handleIncrement = () => {
-    if (guest < 10) {
-      setGuest(guest + 1);
-    }
-  };
-  const handleDecrement = () => {
-    if (guest > 0) {
-      setGuest(guest - 1);
-    }
-  };
-  return (
-    <div className="guest-wrapper">
-      <div className="minus" onClick={handleDecrement}>
-        -
-      </div>
-      <div className="guest-number">{guest}</div>
-      <div className="plus" onClick={handleIncrement}>
-        +
-      </div>
-    </div>
-  );
-};
-
 const LargeBtn = ({ text, icon }) => {
   return (
     <div className="btn-container">
       <button className="large-btn">
         {text}
-        <img src={icon} />
+        <img src={icon} alt="icon" />
       </button>
     </div>
   );
 };
 
-const Booking = () => {
-  const [times, setTimes] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "https://raw.githubusercontent.com/courseraap/capstone/main/api.js"
-      );
-      const text = await response.text();
-      const module = { exports: {} };
-      eval(text);
-      const times = module.exports.seed.availableTimes;
-      setTimes(times);
-    } catch (error) {
-      console.error("Error fetching or parsing data:", error);
-      setTimes(["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]);
-    }
-  };
-
-  const initializeTimes = () => {
-    return times;
-  };
-
-  const updateTimes = (state, action) => {
-    switch (action.type) {
-      case "update_times":
-        return action.availableTimes;
-      default:
-        return state;
-    }
-  };
-
-  const [availableTimes, dispatch] = useReducer(updateTimes, []);
-
-  const handleDateChange = () => {
-    dispatch({ type: "update_times", availableTimes: initializeTimes() });
-  };
-
-  const [selectedTime, setSelectedTime] = useState("");
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-  };
-
+const Form = () => {
   return (
-    <form onSubmit={handleFormSubmit}>
+    <>
       <BreadCrumb />
       <ProgressBar />
-      <div className="booking-container">
-        <div className="booking-main">
-          <div className="item">
-            <Select image={calendar} title="Select a Date" asterisk="*" />
-            <DatePicker />
+      <form>
+        <div className="contact-container">
+          <div className="label-field">
+            <Select image={user} title="First Name" asterisk="*" />
+            <input
+              type="text"
+              name="firstname"
+              placeholder="Jane"
+              className="contact-field"
+            />
+            <small>This field is required.</small>
           </div>
-
-          <div className="item">
-            <Select image={clock} title="Select Time" asterisk="*" />
-            <TimeSelector
-              value={selectedTime}
-              onChange={(e) => setSelectedTIme(e.target.value)}
-              availableTimes={availableTimes}
+          <div className="label-field">
+            <Select image={user} title="Last Name" asterisk="*" />
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Mead"
+              className="contact-field"
+            />
+            <small>This field is required.</small>
+          </div>
+          <div className="label-field">
+            <Select image={email} title="Email Address" asterisk="*" />
+            <input
+              type="email"
+              name="email"
+              placeholder="jane@gmail.com"
+              className="contact-field"
+            />
+            <small>This field is required.</small>
+          </div>
+          <div className="label-field">
+            <Select image={creditcard} title="Credit Card" asterisk="*" />
+            <input
+              type="text"
+              name="creditcard"
+              placeholder="xxxx-xxxx-xxxx-xxxx"
+              className="contact-field"
+            />
+            <small>This field is required.</small>
+          </div>
+          <div className="label-field">
+            <Select image={feather} title="Special Requests" asterisk="" />
+            <textarea
+              type="textarea"
+              name="textarea"
+              placeholder="Could I reserve a table by the window?"
+              className="textarea-field"
             />
           </div>
-
-          <div className="item">
-            <Select image={users} title="Number of guests" asterisk="*" />
-            <Counter />
-          </div>
-          <div className="item">
-            <Select image={fork} title="Dietary Requirements" asterisk="" />
-            <Dietary />
-          </div>
-          <div className="item">
-            <Select image={celebration} title="Select Occasion" asterisk="" />
-            <Occasion />
-          </div>
         </div>
-        <LargeBtn text="Continue" icon={rightArrow} />
-      </div>
-    </form>
+        <Link to="/confirmation">
+          <LargeBtn text="Continue" icon={rightArrow} />
+        </Link>
+      </form>
+    </>
   );
 };
 
-export default Booking;
+export default Form;

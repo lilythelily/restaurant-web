@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import Dietary from "./Dietary";
 import Occasion from "./Occasion";
 import homeIcon from "../assets/icons/home-04.svg";
@@ -129,6 +129,8 @@ const Booking = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
+  const [guestCount, setGuestCount] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRemoteAPI = async () => {
@@ -159,8 +161,23 @@ const Booking = () => {
     }
   }, [selectedDate, fetchAPI]);
 
+    const submitForm = async (formData) => {
+    const isSuccess = await submitAPI(formData); 
+    if (isSuccess) {
+      navigate("/form"); 
+    } else {
+      console.error("Form submission failed");
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    const formData = {
+      date: selectedDate,
+      time: selectedTime,
+      guests: guestCount,
+    };
+    submitForm(formData); 
   };
 
   return (
@@ -188,7 +205,10 @@ const Booking = () => {
 
           <div className="item">
             <Select image={users} title="Number of guests" asterisk="*" />
-            <Counter />
+                       <Counter
+              guestCount={guestCount}
+              setGuestCount={setGuestCount} 
+            />
           </div>
           <div className="item">
             <Select image={fork} title="Dietary Requirements" asterisk="" />
@@ -199,7 +219,9 @@ const Booking = () => {
             <Occasion />
           </div>
         </div>
-        <LargeBtn text="Continue" icon={rightArrow} />
+        <Link to="/form">
+          <LargeBtn text="Continue" icon={rightArrow} />
+        </Link>
       </div>
     </form>
   );
