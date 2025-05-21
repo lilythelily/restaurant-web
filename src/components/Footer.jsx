@@ -22,7 +22,7 @@ const Footer = () => {
           </Link>
 
           <li>About</li>
-          <li>Memu</li>
+          <li>Menu</li>
           <Link to="/booking">
             <li className="footer-li">Reservation</li>
           </Link>

@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect } from "react";
+import { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 
 import homeIcon from "../assets/icons/home-04.svg";
@@ -13,10 +13,12 @@ import user from "../assets/icons/user-profile-02.svg";
 import email from "../assets/icons/email-orange.svg";
 import check from "../assets/icons/check-large.svg";
 import feather from "../assets/icons/feather-02.svg";
-import cross from "..//assets/icons/x.svg";
-import Thanks from "../components/Thanks";
+import cross from "../assets/icons/x.svg";
+import Thanks from "./Thanks";
 
 const BreadCrumb = () => {
+
+
   return (
     <div className="bread">
       <Link to="/">
@@ -56,9 +58,9 @@ const ConfirmationTitle = ({ image, title, value }) => {
   );
 };
 
-const LargeBtn = ({ text, icon }) => {
+const LargeBtn = ({ text, icon, onClick }) => {
   return (
-    <div className="btn-container">
+    <div className="btn-container" onClick={onClick}>
       <button className="large-btn">
         {text}
         <img src={icon} alt="icon" />
@@ -79,11 +81,17 @@ const OutlinedBtn = ({ text, icon }) => {
 };
 
 const Confirmation = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsVisible((prev) => !prev);
+  };
+
   return (
     <>
       <BreadCrumb />
       <ProgressBar />
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="contact-container">
           <div className="contact-label-field">
             <ConfirmationTitle
@@ -131,14 +139,16 @@ const Confirmation = () => {
           </div>
         </div>
 
-        <LargeBtn text="Confirm reservation" icon={check} />
+        <LargeBtn
+          text="Confirm reservation"
+          icon={check}
+          onClick={toggleModal}
+        />
         <Link to="/">
           <OutlinedBtn text="Cancel" icon={cross} />
         </Link>
       </form>
-      <div className="modal">
-        <Thanks />
-      </div>
+      <div className="modal">{isVisible && <Thanks />}</div>
     </>
   );
 };

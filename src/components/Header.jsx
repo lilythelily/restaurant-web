@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import cart from "../assets/icons/cart.svg";
@@ -6,6 +7,25 @@ import hamburger from "../assets/icons/hamburger.svg";
 import HamburgerMenu from "./HamburgerMenu";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false); 
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside); 
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside); 
+    };
+  }, []);
+
   return (
     <>
       <header>
@@ -35,10 +55,14 @@ const Header = () => {
           <button className="login-btn">
             <img src={login} alt="login"></img>Login
           </button>
-          <img src={hamburger} alt="menu" id="hamburger" />
+          <img src={hamburger} alt="menu" id="hamburger" onClick={toggleMenu} />
         </div>
       </header>
-
+      {isMenuOpen && (
+        <div ref={menuRef} className="hamburger-menu-container">
+          <HamburgerMenu />
+        </div>
+      )}
     </>
   );
 };

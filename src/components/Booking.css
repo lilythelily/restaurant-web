@@ -93,29 +93,12 @@ main {
   gap: 16px;
 }
 
-/* .date-wrapper {
-  padding: 16px 24px;
-  border: 2px solid var(--gray3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border-radius: 40px;
-  cursor: pointer;
-  background-color: var(--white);
-}
-
-.date-wrapper:hover {
-  border-color: var(--green3);
-}
-
 .date-container {
   display: flex;
   gap: 24px;
   margin: 24px 0;
-} */
-
-#date-picker {
+}
+*/ #date-picker {
   appearance: none;
   background-color: var(--bg);
   width: 314px;
@@ -131,6 +114,22 @@ main {
   font-family: "Karla", sans-serif;
   font-size: 20px;
   color: var(--gray2);
+}
+
+.error {
+  color: var(--dark-coral);
+  font-size: 12px;
+}
+.error2 {
+  color: var(--dark-coral);
+  font-size: 12px;
+  margin-top: -32px;
+}
+
+.picker-error {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 input {
@@ -326,6 +325,7 @@ select {
   background-color: var(--white);
   padding: 32px 0;
   width: 100vw;
+  gap: 32px;
 }
 
 .contact-field {
@@ -357,7 +357,6 @@ select {
 small {
   color: var(--dark-coral);
   margin-bottom: 32px;
-  opacity: 0;
 }
 
 textarea {
@@ -384,26 +383,26 @@ textarea {
 
 /* ===== Confirmation ===== */
 
-.confirm-item{
+.confirm-item {
   font-size: 16px;
   color: var(--gray3);
   font-weight: 400;
 }
 
-.response{
+.response {
   font-size: 18px;
   font-weight: 600;
   color: var(--gray1);
 }
 
-.img-title{
+.img-title {
   width: 200px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.confirmation-wrapper{
+.confirmation-wrapper {
   display: flex;
   width: 50vw;
   justify-content: flex-start;
@@ -413,7 +412,7 @@ textarea {
   gap: 10%;
 }
 
-.large-btn2{
+.large-btn2 {
   display: flex;
   width: 622px;
   padding: 32px 20px 32px 40px;
@@ -435,7 +434,7 @@ textarea {
 
 /* ==== thanks modal ==== */
 
-.thanks-h2{
+.thanks-h2 {
   margin: -24px 0 16px 0;
 }
 
@@ -447,7 +446,7 @@ textarea {
   text-align: center;
 }
 
-.popup{
+.popup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -456,20 +455,17 @@ textarea {
   border-radius: 16px;
   width: 500px;
   height: 500px;
-  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
-  background-image: url('../assets/icons/x.svg');
-  background-repeat: no-repeat;
-  background-position: top 5% right 5%;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
-.modal{
+.modal {
   position: absolute;
   z-index: 0;
   transform: translate(-50% -50%);
   top: 50%;
- left: 50%;
- margin-left: -20%;
- display: none;
+  left: 50%;
+  margin-left: -20%;
 }
 
 /* ---responsive---- */
@@ -495,28 +491,25 @@ textarea {
   .login-btn {
     display: none;
   }
-
 }
 
 @media (max-width: 640px) {
-  .confirmation-wrapper{
+  .confirmation-wrapper {
     width: 90vw;
   }
-  .progress{
+  .progress {
     margin-top: 16px;
   }
 
-  .bread{
-    display:none;
+  .bread {
+    display: none;
   }
   .large-btn,
-  .large-btn2{
+  .large-btn2 {
     width: 90vw;
   }
 
   .footer-ul {
     display: none;
   }
-
-
 }

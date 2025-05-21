@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dietary from "./Dietary";
 import Occasion from "./Occasion";
 import homeIcon from "../assets/icons/home-04.svg";
@@ -64,7 +64,7 @@ const Select = ({ image, title, asterisk }) => {
   );
 };
 
-const DatePicker = ({ value, onChange }) => {
+const DatePicker = ({ value, onChange, error }) => {
   return (
     <input
       type="date"
@@ -72,13 +72,23 @@ const DatePicker = ({ value, onChange }) => {
       value={value}
       onChange={onChange}
       required
+      style={{
+        border: error ? "2px solid #df591b" : "#f7f7f7",
+      }}
     ></input>
   );
 };
 
-const TimeSelector = ({ value, onChange, availableTimes }) => {
+const TimeSelector = ({ value, onChange, availableTimes, error }) => {
   return (
-    <select id="booking-time" value={value} onChange={onChange} required>
+    <select
+      id="booking-time"
+      value={value}
+      onChange={onChange}
+      style={{
+        border: error ? " 2px solid #df591b" : "#f7f7f7",
+      }}
+    >
       {availableTimes.map((time, index) => (
         <option key={index} value={time}>
           {time}
@@ -117,7 +127,7 @@ const Counter = () => {
 const LargeBtn = ({ text, icon }) => {
   return (
     <div className="btn-container">
-      <button className="large-btn">
+      <button className="large-btn" type="submit">
         {text}
         <img src={icon} alt="icon" />
       </button>
@@ -131,6 +141,8 @@ const Booking = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [guestCount, setGuestCount] = useState(1);
   const navigate = useNavigate();
+  const [dateError, setDateError] = useState(false);
+  const [timeError, setTimeError] = useState(false);
 
   useEffect(() => {
     const fetchRemoteAPI = async () => {
@@ -161,23 +173,40 @@ const Booking = () => {
     }
   }, [selectedDate, fetchAPI]);
 
-    const submitForm = async (formData) => {
-    const isSuccess = await submitAPI(formData); 
-    if (isSuccess) {
-      navigate("/form"); 
+  const submitForm = async (formData) => {
+    if (window.submitForm) {
+      const isSuccess = await window.submitForm(formData);
+      if (isSuccess) {
+        navigate("/form");
+      } else {
+        console.error("Form submission failed");
+      }
     } else {
-      console.error("Form submission failed");
+      console.error("submitForm function is not available");
     }
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setDateError(false);
+    setTimeError(false);
+
+    if (!selectedDate) {
+      setDateError(true);
+    }
+    if (!selectedTime) {
+      setTimeError(true);
+    } else {
+      navigate('/form');
+    }
+
     const formData = {
       date: selectedDate,
       time: selectedTime,
       guests: guestCount,
     };
-    submitForm(formData); 
+
+    submitForm(formData);
   };
 
   return (
@@ -188,27 +217,32 @@ const Booking = () => {
         <div className="booking-main">
           <div className="item">
             <Select image={calendar} title="Select a Date" asterisk="*" />
-            <DatePicker
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-            />
+            <div className="picker-error">
+              <DatePicker
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                error={dateError}
+              />
+              {dateError && <p className="error">Please select an option.</p>}
+            </div>
           </div>
 
           <div className="item">
             <Select image={clock} title="Select Time" asterisk="*" />
-            <TimeSelector
-              value={selectedTime}
-              onChange={(e) => setSelectedTime(e.target.value)}
-              availableTimes={availableTimes}
-            />
+            <div className="picker-error">
+              <TimeSelector
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(e.target.value)}
+                availableTimes={availableTimes}
+                error={timeError}
+              />
+              {timeError && <p className="error2">Please select an option.</p>}
+            </div>
           </div>
 
           <div className="item">
             <Select image={users} title="Number of guests" asterisk="*" />
-                       <Counter
-              guestCount={guestCount}
-              setGuestCount={setGuestCount} 
-            />
+            <Counter guestCount={guestCount} setGuestCount={setGuestCount} />
           </div>
           <div className="item">
             <Select image={fork} title="Dietary Requirements" asterisk="" />
@@ -219,9 +253,8 @@ const Booking = () => {
             <Occasion />
           </div>
         </div>
-        <Link to="/form">
-          <LargeBtn text="Continue" icon={rightArrow} />
-        </Link>
+
+        <LargeBtn text="Continue" icon={rightArrow} />
       </div>
     </form>
   );

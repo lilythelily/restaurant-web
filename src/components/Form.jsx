@@ -1,6 +1,5 @@
-import { useState, useReducer, useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import homeIcon from "../assets/icons/home-04.svg";
 import chevron from "../assets/icons/chevron-right.svg";
 import progress2 from "../assets/progress2.png";
@@ -48,7 +47,7 @@ const Select = ({ image, title, asterisk }) => {
   );
 };
 
-const LargeBtn = ({ text, icon }) => {
+const LargeBtn = ({ text, icon, onClick }) => {
   return (
     <div className="btn-container">
       <button className="large-btn">
@@ -60,11 +59,61 @@ const LargeBtn = ({ text, icon }) => {
 };
 
 const Form = () => {
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({
+    firstname: false,
+    lastname: false,
+    email: false,
+    creditcard: false,
+  });
+
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    creditcard: "",
+    textarea: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setErrors({
+      ...errors,
+      [e.target.name]: false,
+    });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    let newErrors = {};
+    let formIsValid = true;
+
+    for (const key in formData) {
+      if (
+        ["firstname", "lastname", "email", "creditcard"].includes(key) &&
+        formData[key].trim() === ""
+      ) {
+        newErrors[key] = true;
+        formIsValid = false;
+      } else {
+        newErrors[key] = false;
+      }
+    }
+    setErrors(newErrors);
+
+    if (formIsValid) {
+      navigate("/confirmation");
+    }
+  };
+
   return (
     <>
       <BreadCrumb />
       <ProgressBar />
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="contact-container">
           <div className="label-field">
             <Select image={user} title="First Name" asterisk="*" />
@@ -73,8 +122,13 @@ const Form = () => {
               name="firstname"
               placeholder="Jane"
               className="contact-field"
+              value={formData.firstname}
+              onChange={handleChange}
+              style={{
+                border: errors ? "2px solid #df591b" : "#f7f7f7",
+              }}
             />
-            <small>This field is required.</small>
+            {errors.firstname && <small>This field is required.</small>}
           </div>
           <div className="label-field">
             <Select image={user} title="Last Name" asterisk="*" />
@@ -83,8 +137,13 @@ const Form = () => {
               name="lastname"
               placeholder="Mead"
               className="contact-field"
+              value={formData.lastname}
+              onChange={handleChange}
+              style={{
+                border: errors ? "2px solid #df591b" : "#f7f7f7",
+              }}
             />
-            <small>This field is required.</small>
+            {errors.lastname && <small>This field is required.</small>}
           </div>
           <div className="label-field">
             <Select image={email} title="Email Address" asterisk="*" />
@@ -93,8 +152,13 @@ const Form = () => {
               name="email"
               placeholder="jane@gmail.com"
               className="contact-field"
+              value={formData.email}
+              onChange={handleChange}
+              style={{
+                border: errors ? "2px solid #df591b" : "#f7f7f7",
+              }}
             />
-            <small>This field is required.</small>
+            {errors.email && <small>This field is required.</small>}
           </div>
           <div className="label-field">
             <Select image={creditcard} title="Credit Card" asterisk="*" />
@@ -103,8 +167,13 @@ const Form = () => {
               name="creditcard"
               placeholder="xxxx-xxxx-xxxx-xxxx"
               className="contact-field"
+              value={formData.creditcard}
+              onChange={handleChange}
+              style={{
+                border: errors ? "2px solid #df591b" : "#f7f7f7",
+              }}
             />
-            <small>This field is required.</small>
+            {errors.creditcard && <small>This field is required.</small>}
           </div>
           <div className="label-field">
             <Select image={feather} title="Special Requests" asterisk="" />
@@ -116,9 +185,8 @@ const Form = () => {
             />
           </div>
         </div>
-        <Link to="/confirmation">
-          <LargeBtn text="Continue" icon={rightArrow} />
-        </Link>
+
+        <LargeBtn text="Continue" icon={rightArrow} />
       </form>
     </>
   );

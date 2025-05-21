@@ -655,6 +655,7 @@ footer {
 @media (max-width: 1000px) {
   #hamburger {
     display: block;
+    cursor: pointer;
   }
   .header-ul {
     display: none;
