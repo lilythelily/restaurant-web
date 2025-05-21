@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Dietary from "./Dietary";
 import Occasion from "./Occasion";
@@ -11,6 +11,24 @@ import users from "../assets/icons/users-profiles-03.svg";
 import fork from "../assets/icons/restaurant.svg";
 import celebration from "../assets/icons/celebration.svg";
 import rightArrow from "../assets/icons/arrow-right.svg";
+
+const fetchAPI = function (date) {
+  let result = [];
+  let seededRandom = function (seed) {
+    var m = 2 ** 35 - 31;
+    var a = 185852;
+    var s = seed % m;
+    return function () {
+      return (s = (s * a) % m) / m;
+    };
+  };
+  let random = seededRandom(date.getDate());
+  for (let i = 17; i <= 23; i++) {
+    if (random() < 0.5) result.push(i + ":00");
+    if (random() < 0.5) result.push(i + ":30");
+  }
+  return result;
+};
 
 const BreadCrumb = () => {
   return (
@@ -46,64 +64,32 @@ const Select = ({ image, title, asterisk }) => {
   );
 };
 
-const DatePicker = () => {
-  const [date, setDate] = useState("");
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
+const DatePicker = ({ value, onChange }) => {
   return (
     <input
       type="date"
       id="date-picker"
-      value={date}
-      onChange={handleDateChange}
+      value={value}
+      onChange={onChange}
+      required
     ></input>
   );
 };
 
-const TimeSelector = ({ value, onChange }) => {
-  const availableTimes = [
-    {
-      id: 1,
-      option: "17:00",
-    },
-    {
-      id: 2,
-      option: "18:00",
-    },
-    {
-      id: 3,
-      option: "19:00",
-    },
-    {
-      id: 4,
-      option: "20:00",
-    },
-    {
-      id: 5,
-      option: "21:00",
-    },
-    {
-      id: 6,
-      option: "22:00",
-    },
-  ];
-
+const TimeSelector = ({ value, onChange, availableTimes }) => {
   return (
-    <>
-      <select id="booking-time" value={value} onChange={onChange}>
-        {availableTimes.map((time) => (
-          <option key={time.id} value={time.option}>
-            {time.option}
-          </option>
-        ))}
-      </select>
-    </>
+    <select id="booking-time" value={value} onChange={onChange} required>
+      {availableTimes.map((time, index) => (
+        <option key={index} value={time}>
+          {time}
+        </option>
+      ))}
+    </select>
   );
 };
 
 const Counter = () => {
-  const [guest, setGuest] = useState(0);
+  const [guest, setGuest] = useState(1);
 
   const handleIncrement = () => {
     if (guest < 10) {
@@ -133,58 +119,46 @@ const LargeBtn = ({ text, icon }) => {
     <div className="btn-container">
       <button className="large-btn">
         {text}
-        <img src={icon} />
+        <img src={icon} alt="icon" />
       </button>
     </div>
   );
 };
 
 const Booking = () => {
-  const initializeTimes = () => {
-    return [
-      {
-        id: 1,
-        option: "17:00",
-      },
-      {
-        id: 2,
-        option: "18:00",
-      },
-      {
-        id: 3,
-        option: "19:00",
-      },
-      {
-        id: 4,
-        option: "20:00",
-      },
-      {
-        id: 5,
-        option: "21:00",
-      },
-      {
-        id: 6,
-        option: "22:00",
-      },
-    ];
-  };
+  const [selectedDate, setSelectedDate] = useState("");
+  const [availableTimes, setAvailableTimes] = useState([]);
+  const [selectedTime, setSelectedTime] = useState("");
 
-  const updateTimes = (state, action) => {
-    switch (action.type) {
-      case "update_times":
-        return action.availableTimes;
-      default:
-        return state;
+  useEffect(() => {
+    const fetchRemoteAPI = async () => {
+      try {
+        const response = await fetch(REMOTE_API_URL);
+        const text = await response.text();
+        const module = { exports: {} };
+        eval(text);
+        setFetchAPI(() => module.exports.fetchAPI);
+      } catch (error) {
+        console.error("Error fetching remote API:", error);
+        setFetchAPI(null);
+      }
+    };
+    fetchRemoteAPI();
+  }, []);
+
+  useEffect(() => {
+    if (selectedDate && fetchAPI) {
+      const dateObj = new Date(selectedDate);
+      const times = fetchAPI(dateObj);
+      setAvailableTimes(
+        times.length
+          ? times
+          : ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
+      );
+      setSelectedTime("");
     }
-  };
+  }, [selectedDate, fetchAPI]);
 
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
-
-  const handleDateChange = (selectedDate) => {
-    dispatch({ type: "update_times", availableTimes: initializeTimes() });
-  };
-
-  const [selectedTime, setSelectedTIme] = useState("");
   const handleFormSubmit = (e) => {
     e.preventDefault();
   };
@@ -197,14 +171,18 @@ const Booking = () => {
         <div className="booking-main">
           <div className="item">
             <Select image={calendar} title="Select a Date" asterisk="*" />
-            <DatePicker />
+            <DatePicker
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+            />
           </div>
 
           <div className="item">
             <Select image={clock} title="Select Time" asterisk="*" />
             <TimeSelector
               value={selectedTime}
-              onChange={(e) => setSelectedTIme(e.target.value)}
+              onChange={(e) => setSelectedTime(e.target.value)}
+              availableTimes={availableTimes}
             />
           </div>
 
