@@ -2,10 +2,19 @@ import { render, waitFor } from "@testing-library/react";
 import { describe, expect, test, jest } from "@jest/globals";
 import Booking from "./Booking";
 
-test("Renders the BookingForm heading", () => {
+test("Renders the Booking heading", () => {
   render(<Booking />);
-  const headingElement = screen.getByText("Select Occasion");
-  expect(headingElement).toBeInTheDocument();
+  const dateElement = screen.getByTestId("date-picker");
+  expect(dateElement).toBeInTheDocument();
+  expect(dateElement).toHaveAttribute("required");
+
+  const timeElement = screen.getByTestId("time-picker");
+  expect(timeElement).toBeInTheDocument();
+  expect(timeElement).toHaveAttribute("required");
+
+  const guestElement = screen.getByTestId("guest-picker");
+  expect(guestElement).toBeInTheDocument();
+  expect(guestElement).toHaveAttribute("required");
 });
 
 describe("Booking Component useEffect", () => {

@@ -1,28 +1,29 @@
 import salad from "../assets/greek salad.jpg";
 import check from "../assets/icons/check-02.svg";
-import bruschetta from '..//assets/bruschetta.jpg'
-import lemonCake from '..//assets/lemon dessert.jpg';
-import arrabbiata from '..//assets/penne.jpg';
-import fish from '..//assets/fish.jpg';
-import redArrow from '..//assets/icons/red-arrow-right.svg';
+import bruschetta from "..//assets/bruschetta.jpg";
+import lemonCake from "..//assets/lemon dessert.jpg";
+import arrabbiata from "..//assets/penne.jpg";
+import fish from "..//assets/fish.jpg";
+import redArrow from "..//assets/icons/red-arrow-right.svg";
 
 const Card = ({ image, title, description, price }) => {
-    return (
-        <>
-    <div className="card">
-      <img src={image} className="menu-image" />
-      <div className="card-text">
-        <p className="title">{title}</p>
-        <p className="description">{description}</p>
-        <div className="price-btn">
-          <p className="price">{price}</p>
-          <button className="order-btn">
-            Order
-            <img src={check} alt="check" id="check" />
-          </button>
+  return (
+    <>
+      <div className="card">
+        <img src={image} className="menu-image" />
+        <div className="card-text">
+          <p className="title">{title}</p>
+          <p className="description">{description}</p>
+          <div className="price-btn">
+            <p className="price">{price}</p>
+            <button className="order-btn">
+              Order
+              <img src={check} alt="check" id="check" />
+            </button>
+          </div>
         </div>
-      </div></div>
-            </>
+      </div>
+    </>
   );
 };
 

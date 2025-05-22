@@ -197,7 +197,7 @@ const Booking = () => {
     <form onSubmit={handleFormSubmit}>
       <BreadCrumb />
       <ProgressBar />
-      <div className="booking-container">
+      <section className="booking-container">
         <div className="booking-main">
           <div className="item">
             <Select image={calendar} title="Select a Date" asterisk="*" />
@@ -206,6 +206,7 @@ const Booking = () => {
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
                 error={dateError}
+                data-testid="date-picker"
               />
               {dateError && <p className="error">Please select a date.</p>}
             </div>
@@ -219,6 +220,7 @@ const Booking = () => {
                 onChange={(e) => setSelectedTime(e.target.value)}
                 availableTimes={availableTimes}
                 error={timeError}
+                data-testid="time-picker"
               />
               {timeError && <p className="error2">Please select a time.</p>}
             </div>
@@ -226,7 +228,11 @@ const Booking = () => {
 
           <div className="item">
             <Select image={users} title="Number of guests" asterisk="*" />
-            <Counter guestCount={guestCount} setGuestCount={setGuestCount} />
+            <Counter
+              guestCount={guestCount}
+              setGuestCount={setGuestCount}
+              data-testid="guest-picker"
+            />
           </div>
           <div className="item">
             <Select image={fork} title="Dietary Requirements" asterisk="" />
@@ -239,7 +245,7 @@ const Booking = () => {
         </div>
 
         <LargeBtn text="Continue" icon={rightArrow} />
-      </div>
+      </section>
     </form>
   );
 };

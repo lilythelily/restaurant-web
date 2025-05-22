@@ -3,7 +3,7 @@ import rightArrow from "../assets/icons/arrow-right.svg";
 
 const Hero = () => {
   return (
-    <div className="hero-section">
+    <section className="hero-section">
       <h1>
         Taste Authentic Cuisine
         <br />
@@ -19,7 +19,7 @@ const Hero = () => {
           <img src={rightArrow} alt="arrow" />
         </button>
       </Link>
-    </div>
+    </section>
   );
 };
 
