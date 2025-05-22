@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 
 import homeIcon from "../assets/icons/home-04.svg";
@@ -97,11 +97,11 @@ const Confirmation = () => {
             <ConfirmationTitle
               image={calendar}
               title="Date"
-              value="27 May, 2025"
+              value="5 May 2025"
             />
           </div>
           <div className="contact-label-field">
-            <ConfirmationTitle image={clock} title="Time" value="19:30" />
+            <ConfirmationTitle image={clock} title="Time" value="19:00" />
           </div>
           <div className="contact-label-field">
             <ConfirmationTitle image={users} title="Guests" value="2" />

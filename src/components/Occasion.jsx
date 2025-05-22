@@ -4,22 +4,26 @@ const Occasion = () => {
   const occasionOptions = [
     {
       id: 1,
-      option: "Birthday",
+      option: "Please select",
     },
     {
       id: 2,
-      option: "Engagement",
+      option: "Birthday",
     },
     {
       id: 3,
-      option: "Promotion",
+      option: "Engagement",
     },
     {
       id: 4,
-      option: "Anniversary",
+      option: "Promotion",
     },
     {
       id: 5,
+      option: "Anniversary",
+    },
+    {
+      id: 6,
       option: "Surprise",
     },
   ];

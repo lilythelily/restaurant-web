@@ -145,6 +145,7 @@ input {
   color: var(--gray2);
   font-size: 20px;
   text-align: center;
+  cursor:pointer;
 }
 
 label {
@@ -491,6 +492,53 @@ textarea {
   .login-btn {
     display: none;
   }
+
+  input{
+    width: 80vw;
+  }
+  select{
+    width: 80vw;
+  }
+  .item {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  align-items: start;
+gap: 16px;
+}
+
+.booking-main {
+  justify-content: center;
+  align-items: center;
+}
+
+.booking-container {
+justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+}
+
+@media (max-width:800px){
+  .popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 16px;
+  width: 100vw;
+  height: 500px;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 20%;
+}
 }
 
 @media (max-width: 640px) {
@@ -507,6 +555,7 @@ textarea {
   .large-btn,
   .large-btn2 {
     width: 90vw;
+    font-size: 16px;
   }
 
   .footer-ul {

@@ -39,10 +39,10 @@ const Select = ({ image, title, asterisk }) => {
   return (
     <div className="select-wrapper">
       <img src={image} className="circle-icon" />
-      <p className="option-title">
+      <label className="option-title">
         {title}
         <span className="asterisk">{asterisk}</span>
-      </p>
+      </label>
     </div>
   );
 };
@@ -50,7 +50,7 @@ const Select = ({ image, title, asterisk }) => {
 const LargeBtn = ({ text, icon, onClick }) => {
   return (
     <div className="btn-container">
-      <button className="large-btn">
+      <button className="large-btn" type='submit' aria-label='On Click'>
         {text}
         <img src={icon} alt="icon" />
       </button>
@@ -125,7 +125,7 @@ const Form = () => {
               value={formData.firstname}
               onChange={handleChange}
               style={{
-                border: errors ? "2px solid #df591b" : "#f7f7f7",
+                border: errors.firstname ? "2px solid #df591b" : "1px solid #d4d4d4",
               }}
             />
             {errors.firstname && <small>This field is required.</small>}
@@ -140,7 +140,7 @@ const Form = () => {
               value={formData.lastname}
               onChange={handleChange}
               style={{
-                border: errors ? "2px solid #df591b" : "#f7f7f7",
+                border: errors.lastname ? "2px solid #df591b" : "1px solid #d4d4d4",
               }}
             />
             {errors.lastname && <small>This field is required.</small>}
@@ -155,25 +155,25 @@ const Form = () => {
               value={formData.email}
               onChange={handleChange}
               style={{
-                border: errors ? "2px solid #df591b" : "#f7f7f7",
+                border: errors.email ? "2px solid #df591b" : "1px solid #d4d4d4",
               }}
             />
-            {errors.email && <small>This field is required.</small>}
+            {errors.email && <small>Please enter a valid Email.</small>}
           </div>
           <div className="label-field">
             <Select image={creditcard} title="Credit Card" asterisk="*" />
             <input
               type="text"
               name="creditcard"
-              placeholder="xxxx-xxxx-xxxx-xxxx"
+              placeholder="xxxx xxxx xxxx xxxx"
               className="contact-field"
               value={formData.creditcard}
               onChange={handleChange}
               style={{
-                border: errors ? "2px solid #df591b" : "#f7f7f7",
+                border: errors.creditcard ? "2px solid #df591b" : "1px solid #d4d4d4",
               }}
             />
-            {errors.creditcard && <small>This field is required.</small>}
+            {errors.creditcard && <small>Please enter a valid number.</small>}
           </div>
           <div className="label-field">
             <Select image={feather} title="Special Requests" asterisk="" />

@@ -4,22 +4,26 @@ const Dietary = () => {
   const menuOptions = [
     {
       id: 1,
-      option: "Vegetarian",
+      option: "Please select",
     },
     {
       id: 2,
-      option: "Vegan",
+      option: "Vegetarian",
     },
     {
       id: 3,
-      option: "Dairy Free",
+      option: "Vegan",
     },
     {
       id: 4,
-      option: "Kosher",
+      option: "Dairy Free",
     },
     {
       id: 5,
+      option: "Kosher",
+    },
+    {
+      id: 6,
       option: "Halal",
     },
   ];

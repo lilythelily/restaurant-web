@@ -73,7 +73,7 @@ const DatePicker = ({ value, onChange, error }) => {
       onChange={onChange}
       required
       style={{
-        border: error ? "2px solid #df591b" : "#f7f7f7",
+        border: error ? "2px solid #df591b" : "1px solid #bcbcbc",
       }}
     ></input>
   );
@@ -145,22 +145,6 @@ const Booking = () => {
   const [timeError, setTimeError] = useState(false);
 
   useEffect(() => {
-    const fetchRemoteAPI = async () => {
-      try {
-        const response = await fetch(REMOTE_API_URL);
-        const text = await response.text();
-        const module = { exports: {} };
-        eval(text);
-        setFetchAPI(() => module.exports.fetchAPI);
-      } catch (error) {
-        console.error("Error fetching remote API:", error);
-        setFetchAPI(null);
-      }
-    };
-    fetchRemoteAPI();
-  }, []);
-
-  useEffect(() => {
     if (selectedDate && fetchAPI) {
       const dateObj = new Date(selectedDate);
       const times = fetchAPI(dateObj);
@@ -197,14 +181,14 @@ const Booking = () => {
     if (!selectedTime) {
       setTimeError(true);
     } else {
-      navigate('/form');
-    }
+      const formData = {
+        date: selectedDate,
+        time: selectedTime,
+        guests: guestCount,
+      };
 
-    const formData = {
-      date: selectedDate,
-      time: selectedTime,
-      guests: guestCount,
-    };
+      navigate("/form", { state: formData });
+    }
 
     submitForm(formData);
   };
@@ -223,7 +207,7 @@ const Booking = () => {
                 onChange={(e) => setSelectedDate(e.target.value)}
                 error={dateError}
               />
-              {dateError && <p className="error">Please select an option.</p>}
+              {dateError && <p className="error">Please select a date.</p>}
             </div>
           </div>
 
@@ -236,7 +220,7 @@ const Booking = () => {
                 availableTimes={availableTimes}
                 error={timeError}
               />
-              {timeError && <p className="error2">Please select an option.</p>}
+              {timeError && <p className="error2">Please select a time.</p>}
             </div>
           </div>
 
