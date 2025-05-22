@@ -50,7 +50,7 @@ const Select = ({ image, title, asterisk }) => {
 const LargeBtn = ({ text, icon, onClick }) => {
   return (
     <div className="btn-container">
-      <button className="large-btn" type='submit' aria-label='On Click'>
+      <button className="large-btn" type="submit" aria-label="On Click">
         {text}
         <img src={icon} alt="icon" />
       </button>
@@ -125,7 +125,9 @@ const Form = () => {
               value={formData.firstname}
               onChange={handleChange}
               style={{
-                border: errors.firstname ? "2px solid #df591b" : "1px solid #d4d4d4",
+                border: errors.firstname
+                  ? "2px solid #df591b"
+                  : "1px solid #d4d4d4",
               }}
             />
             {errors.firstname && <small>This field is required.</small>}
@@ -140,7 +142,9 @@ const Form = () => {
               value={formData.lastname}
               onChange={handleChange}
               style={{
-                border: errors.lastname ? "2px solid #df591b" : "1px solid #d4d4d4",
+                border: errors.lastname
+                  ? "2px solid #df591b"
+                  : "1px solid #d4d4d4",
               }}
             />
             {errors.lastname && <small>This field is required.</small>}
@@ -155,7 +159,9 @@ const Form = () => {
               value={formData.email}
               onChange={handleChange}
               style={{
-                border: errors.email ? "2px solid #df591b" : "1px solid #d4d4d4",
+                border: errors.email
+                  ? "2px solid #df591b"
+                  : "1px solid #d4d4d4",
               }}
             />
             {errors.email && <small>Please enter a valid Email.</small>}
@@ -170,7 +176,9 @@ const Form = () => {
               value={formData.creditcard}
               onChange={handleChange}
               style={{
-                border: errors.creditcard ? "2px solid #df591b" : "1px solid #d4d4d4",
+                border: errors.creditcard
+                  ? "2px solid #df591b"
+                  : "1px solid #d4d4d4",
               }}
             />
             {errors.creditcard && <small>Please enter a valid number.</small>}
