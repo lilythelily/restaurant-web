@@ -12,19 +12,15 @@ const HamburgerMenu = () => {
         </div>
       </Link>
 
-      <Link to="/">
-        <div className="item-icon">
-          <li>About</li>
-          <img src={chevron}></img>
-        </div>
-      </Link>
+      <div className="item-icon">
+        <li>About</li>
+        <img src={chevron}></img>
+      </div>
 
-      <Link to="/">
-        <div className="item-icon">
-          <li>Menu</li>
-          <img src={chevron}></img>
-        </div>
-      </Link>
+      <div className="item-icon">
+        <li>Menu</li>
+        <img src={chevron}></img>
+      </div>
 
       <Link to="/booking">
         <div className="item-icon">
@@ -33,19 +29,15 @@ const HamburgerMenu = () => {
         </div>
       </Link>
 
-      <Link to="/">
-        <div className="item-icon">
-          <li>Order Online</li>
-          <img src={chevron}></img>
-        </div>
-      </Link>
+      <div className="item-icon">
+        <li>Order Online</li>
+        <img src={chevron}></img>
+      </div>
 
-      <Link to="/">
-        <div className="item-icon">
-          <li>Login</li>
-          <img src={chevron}></img>
-        </div>
-      </Link>
+      <div className="item-icon">
+        <li>Login</li>
+        <img src={chevron}></img>
+      </div>
     </ul>
   );
 };
