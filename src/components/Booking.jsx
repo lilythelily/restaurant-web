@@ -71,7 +71,6 @@ const DatePicker = ({ value, onChange, error }) => {
       id="date-picker"
       value={value}
       onChange={onChange}
-      required
       style={{
         border: error ? "2px solid #df591b" : "1px solid #bcbcbc",
       }}
